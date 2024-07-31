@@ -14,11 +14,20 @@ func Marshal(e *Error) *pe.Error {
 			Message: "Unknown error, nil error marshalled",
 		}
 	}
+
+	retryable := &pe.BoolValue{}
+	if e.IsRetryable != nil {
+		retryable.Value = *e.IsRetryable
+	}
+
 	err := &pe.Error{
-		Code:    e.Code,
-		Message: e.Message,
-		Stack:   stackToProto(e.StackFrames),
-		Params:  e.Params,
+		Code:         e.Code,
+		Message:      e.Message,
+		MessageChain: e.MessageChain,
+		Stack:        stackToProto(e.StackFrames),
+		Params:       e.Params,
+		Retryable:    retryable,
+		MarshalCount: int32(e.MarshalCount + 1),
 	}
 	if err.Code == "" {
 		err.Code = ErrUnknown
@@ -35,11 +44,20 @@ func Unmarshal(p *pe.Error) *Error {
 			Params:  map[string]string{},
 		}
 	}
+
+	var retryable *bool
+	if p.Retryable != nil {
+		retryable = &p.Retryable.Value
+	}
+
 	err := &Error{
-		Code:        p.Code,
-		Message:     p.Message,
-		StackFrames: protoToStack(p.Stack),
-		Params:      p.Params,
+		Code:         p.Code,
+		Message:      p.Message,
+		MessageChain: p.MessageChain,
+		StackFrames:  protoToStack(p.Stack),
+		Params:       p.Params,
+		IsRetryable:  retryable,
+		MarshalCount: int(p.MarshalCount),
 	}
 	if err.Code == "" {
 		err.Code = ErrUnknown
