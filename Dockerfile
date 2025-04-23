@@ -1,18 +1,14 @@
-FROM golang:1.22.5-alpine AS builder
+FROM golang:1.24.2-alpine AS builder
 
 WORKDIR /go/src/envoy-preflight
 
-RUN apk update && apk add curl
-
-RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+RUN apk update && apk add curl git
 
 COPY . .
 
-RUN dep ensure
+RUN go mod tidy && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-w' -o /go/bin/envoy-preflight ./main.go
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-w' -i -o /go/bin/envoy-preflight ./main.go
-
-FROM gcr.io/distroless/base-debian10
+FROM gcr.io/distroless/base-debian12
 
 COPY --from=builder /go/bin/envoy-preflight /go/bin/envoy-preflight
 

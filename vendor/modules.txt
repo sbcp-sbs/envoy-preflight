@@ -1,6 +1,6 @@
-# github.com/cenk/backoff v2.2.1+incompatible
-## explicit
-github.com/cenk/backoff
+# github.com/cenkalti/backoff/v4 v4.3.0
+## explicit; go 1.18
+github.com/cenkalti/backoff/v4
 # github.com/davecgh/go-spew v1.1.1
 ## explicit
 github.com/davecgh/go-spew/spew
@@ -18,7 +18,7 @@ github.com/monzo/slog
 github.com/monzo/terrors
 github.com/monzo/terrors/proto
 github.com/monzo/terrors/stack
-# github.com/monzo/typhon v1.1.9
+# github.com/monzo/typhon v1.1.10
 ## explicit; go 1.19
 github.com/monzo/typhon
 # github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d
@@ -34,15 +34,15 @@ github.com/stretchr/objx
 ## explicit; go 1.13
 github.com/stretchr/testify/assert
 github.com/stretchr/testify/mock
-# golang.org/x/net v0.7.0
+# golang.org/x/net v0.17.0
 ## explicit; go 1.17
 golang.org/x/net/http/httpguts
 golang.org/x/net/http2
 golang.org/x/net/http2/h2c
 golang.org/x/net/http2/hpack
 golang.org/x/net/idna
-# golang.org/x/text v0.7.0
-## explicit; go 1.17
+# golang.org/x/text v0.17.0
+## explicit; go 1.18
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
 golang.org/x/text/unicode/bidi
