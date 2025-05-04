@@ -26,12 +26,12 @@
 
 
 [[constraint]]
-  name = "github.com/cenk/backoff"
-  version = "2.1.1"
+  name = "github.com/cenkalti/backoff/v4"
+  version = "v4.3.0"
 
 [[constraint]]
-  branch = "master"
   name = "github.com/monzo/typhon"
+  version = "v1.1.10"
 
 [prune]
   go-tests = true
