@@ -3,6 +3,9 @@ name: Handle release
 on:
   release:
     types: [created, edited]
+  push:
+    branches:
+      - master
 
 jobs:
 
