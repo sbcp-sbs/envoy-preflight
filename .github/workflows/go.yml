@@ -37,13 +37,13 @@ jobs:
       working-directory: go/src/github.com/sbcp-sbs/envoy-preflight
       env:
         GOPATH: ${{ github.workspace }}/go
-      run: go build -v .
+      run: go build -v -o ${{ github.workspace }}/go/bin/envoy-preflight .
     
     - name: Archive binary
       uses: actions/upload-artifact@v3
       with:
         name: envoy-preflight
-        path: ${{ github.workspace }}/go/src/github.com/sbcp-sbs/envoy-preflight/envoy-preflight
+        path: ${{ github.workspace }}/go/bin/envoy-preflight
         retention-days: 1
 
   release:
