@@ -1,6 +1,6 @@
 module github.com/sbcp-sbs/envoy-preflight
 
-go 1.24.2
+go 1.23.8
 
 require github.com/cenkalti/backoff/v4 v4.3.0
 
